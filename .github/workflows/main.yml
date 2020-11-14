@@ -27,9 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           touch README.md
-          ${{ steps.current-time.outputs.hour }}
-          # hour=${{ steps.current-time.outputs.hour }}
-          hour=3
+          hour=${{ steps.current-time.outputs.hour }}
           if [ $hour == 0 ]
           then
             hour=24

@@ -32,3 +32,17 @@ jobs:
            echo "commitMsg=$(git log --format=%B -n 1)" >> $GITHUB_ENV
       - name: show commit message
         run : echo $commitMsg
+        
+      - name: Send dingtalk message
+        if: ${{ always() }}
+        uses: ghostoy/dingtalk-action@master
+        with:
+          webhook: https://oapi.dingtalk.com/robot/send?access_token=1234
+          msgtype: markdown
+          content: |
+            {
+                "title": "Github Actions Notification.",
+                "text": "${{ commitMsg }}"
+            }
+          secret: 12345678
+

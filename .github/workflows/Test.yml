@@ -29,9 +29,16 @@ jobs:
 
       - name: get commit message
         run: |
-           echo "commitMsg=$(git log --format=%B -n 1)" >> $GITHUB_ENV
+          echo "commitMsg=$(git log --format=%B -n 1)" >> $GITHUB_ENV
+        env:
+          commitMsg:  $commitMsg
       - name: show commit message
-        run : echo $commitMsg
+        run : |
+          echo $commitMsg
+          echo $GITHUB_ENV
+          echo ${{ github.env.commitMsg }}
+          echo ${{ env.commitMsg }}
+    
         
       - name: Send dingtalk message
         if: ${{ always() }}

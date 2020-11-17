@@ -42,7 +42,7 @@ jobs:
           content: |
             {
                 "title": "Github Actions Notification.",
-                "text": "${{ github.env.commitMsg }}"
+                "text": "$commitMsg"
             }
           secret: 12345678
 
